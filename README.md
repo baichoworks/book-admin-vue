@@ -1,23 +1,17 @@
-# book-admin-vue
+# 图书管理系统前端模板
 
-## Project setup
+## 框架
+- element-plus
+- vue-router
+- Axios
+- Vuex
 
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
+## 部署
 
 ```
-npm run build
+pnpm install
+
+pnpm serve
+
+pnpm build
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
