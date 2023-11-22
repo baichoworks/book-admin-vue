@@ -20,7 +20,7 @@
         </el-menu-item>
         <el-menu-item index="/admin/order">
           <el-icon><search /></el-icon>
-          <span>查询预约</span>
+          <span>图书预定</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -36,15 +36,20 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>修改密码</el-dropdown-item>
-              <el-dropdown-item divided>退出登录</el-dropdown-item>
+              <el-dropdown-item @click="changePwd">修改密码</el-dropdown-item>
+              <el-dropdown-item
+                divided
+                @click="logOut"
+              >
+                退出登录
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
       </el-header>
       <el-main class="main">
         <div class="main-layout">
-          <router-view class="main-view" />
+          <router-view class="main-view"></router-view>
         </div>
       </el-main>
     </el-container>
@@ -52,10 +57,21 @@
 </template>
 
 <script setup>
+  import router from '@/router'
   import { User, Search, Setting } from '@element-plus/icons-vue'
 
-  const userInfo = {
-    username: 'admin',
+  /** 获取用户名 */
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+
+  /** 修改密码 */
+  const changePwd = () => {
+    router.push('/admin/changepass')
+  }
+
+  /** 退出登录 */
+  const logOut = () => {
+    localStorage.clear()
+    router.push('/login')
   }
 </script>
 
@@ -89,17 +105,21 @@
   .main {
     width: 100%;
     height: 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #f0f2f5;
   }
 
   .main-layout {
-    width: 100%;
     height: 100%;
+    width: 100%;
     border-radius: 15px;
     background-color: #ffffff;
+  }
+
+  .main-view {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
   }
 
   .dropdown-link {

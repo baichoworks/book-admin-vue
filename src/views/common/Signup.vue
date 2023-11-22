@@ -14,14 +14,20 @@
           hide-required-asterisk
           size="large"
         >
-          <el-form-item label="用户名" prop="username">
+          <el-form-item
+            label="用户名"
+            prop="username"
+          >
             <el-input
               v-model="userForm.username"
               placeholder="请输入用户名"
               clearable
             />
           </el-form-item>
-          <el-form-item label="密码" prop="password">
+          <el-form-item
+            label="密码"
+            prop="password"
+          >
             <el-input
               type="password"
               placeholder="请输入密码"
@@ -38,9 +44,17 @@
           class="btn"
           @click="$router.push('/login')"
         >
+          <el-icon>
+            <ArrowLeft />
+          </el-icon>
           登录
         </el-button>
-        <el-button type="primary" size="large" class="btn" @click="onSignup">
+        <el-button
+          type="primary"
+          size="large"
+          class="btn"
+          @click="onSignup"
+        >
           注册
         </el-button>
       </div>
@@ -49,9 +63,13 @@
 </template>
 
 <script setup>
+  import axios from 'axios'
+  import router from '@/router'
   import { reactive, ref } from 'vue'
+  import { ElMessage } from 'element-plus'
+  import { ArrowLeft } from '@element-plus/icons-vue'
 
-  const userFormRef = ref('')
+  const userFormRef = ref(null)
 
   const userForm = reactive({
     username: '',
@@ -80,7 +98,24 @@
 
   /** 注册 */
   const onSignup = () => {
-    console.log(userForm)
+    userFormRef.value.validate(validate => {
+      if (validate) {
+        axios
+          .post('/api/user/signup', userForm)
+          .then(record => {
+            const res = record.data
+            if (res.success) {
+              ElMessage.success(res.message)
+              router.push('/login')
+            } else {
+              ElMessage.error(res.message)
+            }
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    })
   }
 </script>
 

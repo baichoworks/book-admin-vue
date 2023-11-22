@@ -14,36 +14,26 @@
           hide-required-asterisk
           size="large"
         >
-          <el-form-item label="用户名" prop="username">
+          <el-form-item
+            label="用户名"
+            prop="username"
+          >
             <el-input
               v-model="userForm.username"
               placeholder="请输入用户名"
               clearable
             />
           </el-form-item>
-          <el-form-item label="密码" prop="password">
+          <el-form-item
+            label="密码"
+            prop="password"
+          >
             <el-input
               type="password"
               placeholder="请输入密码"
               v-model="userForm.password"
               clearable
             />
-          </el-form-item>
-          <el-form-item label="角色" prop="role">
-            <el-select
-              v-model="userForm.role"
-              placeholder="请选择角色"
-              size="large"
-              class="roleOption"
-              @change="changeOption"
-            >
-              <el-option
-                v-for="item in roleOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
           </el-form-item>
         </el-form>
       </div>
@@ -54,9 +44,17 @@
           class="btn"
           @click="$router.push('/signup')"
         >
+          <el-icon>
+            <ArrowLeft />
+          </el-icon>
           注册
         </el-button>
-        <el-button type="primary" size="large" class="btn" @click="onLogin">
+        <el-button
+          type="primary"
+          size="large"
+          class="btn"
+          @click="onLogin"
+        >
           登录
         </el-button>
       </div>
@@ -66,14 +64,16 @@
 
 <script setup>
   import router from '@/router'
+  import axios from 'axios'
+  import { ElMessage } from 'element-plus'
   import { reactive, ref } from 'vue'
+  import { ArrowLeft } from '@element-plus/icons-vue'
 
   const userFormRef = ref('')
 
   const userForm = reactive({
     username: '',
     password: '',
-    role: 'admin',
   })
 
   const rules = reactive({
@@ -96,25 +96,27 @@
     ],
   })
 
-  const roleOptions = [
-    {
-      value: 'admin',
-      label: '管理员',
-    },
-    {
-      value: 'user',
-      label: '普通用户',
-    },
-  ]
-
-  const changeOption = (role) => {
-    userForm.role = role
-  }
-
   /** 登录 */
   const onLogin = () => {
-    localStorage.setItem('userInfo', JSON.stringify(userForm))
-    router.push('/admin/user')
+    userFormRef.value.validate(validate => {
+      if (validate) {
+        axios
+          .post('/api/user/login', userForm)
+          .then(record => {
+            const res = record.data
+            if (res.success) {
+              ElMessage.success(res.message)
+              localStorage.setItem('userInfo', JSON.stringify(res.data))
+              router.push('/admin')
+            } else {
+              ElMessage.error(res.message)
+            }
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      }
+    })
   }
 </script>
 
@@ -147,12 +149,8 @@
     width: 85%;
   }
 
-  .roleOption {
-    width: 100%;
-  }
-
   .el-form-item {
-    margin: 30px auto;
+    margin: 40px auto;
   }
 
   .submit-btn {
