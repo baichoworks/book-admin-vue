@@ -73,7 +73,7 @@
   const userForm = reactive({
     username: '',
     password: '',
-    role: '',
+    role: 'admin',
   })
 
   const rules = reactive({

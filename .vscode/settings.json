@@ -1,0 +1,75 @@
+{
+  // 默认配置
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Xcode Classic (Dark)",
+  "workbench.productIconTheme": "macos-modern",
+  // 字体样式
+  "editor.tabSize": 2,
+  "editor.fontSize": 16,
+  "editor.fontVariations": false,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": false,
+  "editor.fontFamily": "Fira Code Retina,Consolas, 'Courier New', monospace",
+  // 控制是否启用括号对指南
+  "editor.guides.bracketPairs": true,
+  // 删除不提示
+  "explorer.confirmDelete": false,
+  "html.format.contentUnformatted": "pre,code,textarea",
+  // 控制空编辑器文本提示是否应在编辑器中可见
+  "workbench.editor.empty.hint": "hidden",
+  // 始终允许不受信任的文件引入受信任的工作区，而不显示提示
+  "security.workspace.trust.untrustedFiles": "open",
+  // 保存时格式化文件
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // 默认格式化方式，统一为 prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // prettier设置
+  "prettier.enableDebugLogs": true,
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.semi": false,
+  "prettier.ignorePath": "",
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 80,
+  "eslint.ignoreUntitled": true,
+  "prettier.vueIndentScriptAndStyle": true,
+  "prettier.eslintIntegration": false,
+  "prettier.tslintIntegration": false,
+  // eslint配置
+  "eslint.run": "onType",
+  "eslint.options": {
+    "extensions": [".js", ".vue", ".jsx", ".tsx"]
+  },
+  // 类型支持
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Volar
+  "volar.inlayHints.eventArgumentInInlineHandlers": false
+}
