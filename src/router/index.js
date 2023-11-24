@@ -23,25 +23,16 @@ const routes = [
         path: 'user',
         component: UserManage,
         name: 'user',
-        meta: {
-          title: '用户管理',
-        },
       },
       {
         path: 'book',
         component: BookManage,
         name: 'book',
-        meta: {
-          title: '图书管理',
-        },
       },
       {
         path: 'order',
         component: OrderManage,
         name: 'order',
-        meta: {
-          title: '图书预定',
-        },
       },
       {
         path: 'changepass',
