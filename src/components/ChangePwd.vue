@@ -114,7 +114,7 @@
             const res = record.data
             if (res.success) {
               ElMessage.success(res.message)
-              localStorage.removeItem('userInfo')
+              localStorage.clear()
               router.push('/login')
             } else {
               ElMessage.error(res.message)
