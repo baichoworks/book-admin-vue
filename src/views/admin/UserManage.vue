@@ -1,11 +1,30 @@
 <template>
   <div class="container">
+    <div class="table-header">
+      <el-input
+        v-model="search"
+        placeholder="请输入搜索的用户名"
+      />
+      <el-button
+        class="header-btn"
+        type="primary"
+        @click="searchData"
+      >
+        搜索
+      </el-button>
+      <el-button
+        class="header-btn"
+        type="primary"
+        @click="handleAdd"
+      >
+        添加用户
+      </el-button>
+    </div>
     <el-table
       class="table"
       :data="tableData.value"
       table-layout="fixed"
-      style="width: 100%"
-      stripe
+      highlight-current-row
     >
       <el-table-column
         label="ID"
@@ -14,30 +33,17 @@
       <el-table-column
         label="用户名"
         prop="username"
-      />
-      <el-table-column align="right">
-        <template #header>
-          <div class="table-header">
-            <el-input
-              v-model="search"
-              placeholder="请输入搜索的用户名"
-            />
-            <el-button
-              class="header-btn"
-              type="primary"
-              @click="searchData"
-            >
-              搜索
-            </el-button>
-            <el-button
-              class="header-btn"
-              type="primary"
-              @click="handleAdd"
-            >
-              添加用户
-            </el-button>
-          </div>
+      >
+        <template #default="scope">
+          <el-tag
+            size="large"
+            effect="plain"
+          >
+            {{ scope.row.username }}
+          </el-tag>
         </template>
+      </el-table-column>
+      <el-table-column align="right">
         <template #default="scope">
           <el-button @click="handleEdit(scope.$index, scope.row)">
             编辑
@@ -137,21 +143,22 @@
 </script>
 
 <style scoped>
-  .table {
-    width: 100%;
-    height: 100%;
+  .container {
+    display: flex;
+    flex-direction: column;
   }
 
   .table-header {
+    width: 500px;
     display: flex;
     flex-direction: row;
   }
 
-  .header-btn {
-    margin-left: 10px;
+  .table {
+    width: 100%;
   }
 
-  .dialog-footer button:first-child {
-    margin-right: 10px;
+  .header-btn {
+    margin-left: 10px;
   }
 </style>

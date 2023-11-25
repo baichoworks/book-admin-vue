@@ -11,15 +11,15 @@
         router
       >
         <el-menu-item index="/admin/user">
-          <el-icon><user /></el-icon>
+          <el-icon><User /></el-icon>
           <span>用户管理</span>
         </el-menu-item>
         <el-menu-item index="/admin/book">
-          <el-icon><setting /></el-icon>
+          <el-icon><Setting /></el-icon>
           <span>图书管理</span>
         </el-menu-item>
         <el-menu-item index="/admin/order">
-          <el-icon><search /></el-icon>
+          <el-icon><Notebook /></el-icon>
           <span>图书预定</span>
         </el-menu-item>
       </el-menu>
@@ -58,7 +58,7 @@
 
 <script setup>
   import router from '@/router'
-  import { User, Search, Setting } from '@element-plus/icons-vue'
+  import { User, Notebook, Setting } from '@element-plus/icons-vue'
 
   /** 获取用户名 */
   const userInfo = JSON.parse(localStorage.getItem('userInfo'))

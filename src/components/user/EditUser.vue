@@ -9,7 +9,7 @@
         center
         align-center
         @open="getUserData"
-        @close="closeDialog"
+        @closed="closeDialog"
       >
         <el-form
           ref="editUserFormRef"
@@ -51,7 +51,7 @@
         width="25%"
         center
         align-center
-        @close="closeDialog"
+        @closed="closeDialog"
       >
         <el-form
           ref="addUserFormRef"
@@ -167,16 +167,22 @@
 
   /** 关闭窗口 */
   const closeDialog = () => {
-    addUserForm.id = ''
-    addUserForm.username = ''
-    addUserForm.password = ''
+    // 遍历赋值
+    Object.keys(addUserForm).forEach(key => {
+      addUserForm[key] = ''
+    })
     isShowEditDialog.value = false
+    isEdit.value = Boolean
   }
 
   /** 获取用户信息 */
   const getUserData = () => {
-    editUserForm.id = props.editData.id
-    editUserForm.username = props.editData.username
+    // 遍历赋值
+    Object.keys(props.editData).forEach(key => {
+      if (editUserForm.hasOwnProperty(key)) {
+        editUserForm[key] = props.editData[key]
+      }
+    })
   }
 
   /** 更新用户 */
