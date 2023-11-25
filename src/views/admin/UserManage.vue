@@ -76,6 +76,7 @@
   import { userStore } from '@/store/modules/userStore'
   import EditUser from '@/components/user/EditUser.vue'
   import { InfoFilled } from '@element-plus/icons-vue'
+  import { ElMessage } from 'element-plus'
 
   /** 组件Ref */
   const editDialogRef = ref(Boolean)
@@ -121,6 +122,10 @@
 
   /** 删除 */
   const handleDelete = async (index, row) => {
+    if (row.username === 'admin') {
+      ElMessage.error('管理员用户不能删除')
+      return
+    }
     await store.deleteUser(row)
     store.getAllUser()
   }
