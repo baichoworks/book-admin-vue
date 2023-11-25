@@ -181,16 +181,23 @@
 
   /** 更新用户 */
   const onUpdate = async () => {
-    await store.updateUser(editUserForm)
-    await store.getAllUser()
-    isShowEditDialog.value = false
+    editUserFormRef.value.validate(async validate => {
+      if (validate) {
+        await store.updateUser(editUserForm)
+        await store.getAllUser()
+        isShowEditDialog.value = false
+      }
+    })
   }
 
   /** 添加用户 */
   const onAddUser = async () => {
-    await store.addUser(addUserForm)
-    await store.getAllUser()
-    isShowEditDialog.value = false
+    addUserFormRef.value.validate(async validate => {
+      if (validate) {
+        await store.addUser(addUserForm)
+        await store.getAllUser()
+      }
+    })
   }
 </script>
 <style scoped>
