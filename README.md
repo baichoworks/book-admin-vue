@@ -1,6 +1,7 @@
 # 图书管理系统前端模板
 
 ## 框架
+- Vue3
 - element-plus
 - vue-router
 - Axios
