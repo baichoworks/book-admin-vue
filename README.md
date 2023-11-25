@@ -4,7 +4,7 @@
 - element-plus
 - vue-router
 - Axios
-- Vuex
+- Pinia
 
 ## 部署
 
