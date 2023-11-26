@@ -51,17 +51,6 @@
             />
           </el-form-item>
           <el-form-item
-            label="数量"
-            prop="bcount"
-          >
-            <el-input
-              type="number"
-              v-model="editBookForm.bcount"
-              placeholder="请输入数量"
-              clearable
-            />
-          </el-form-item>
-          <el-form-item
             label="是否可用"
             prop="available"
           >
@@ -141,17 +130,6 @@
             />
           </el-form-item>
           <el-form-item
-            label="数量"
-            prop="bcount"
-          >
-            <el-input
-              type="number"
-              v-model="addBookForm.bcount"
-              placeholder="请输入数量"
-              clearable
-            />
-          </el-form-item>
-          <el-form-item
             label="是否可用"
             prop="available"
           >
@@ -202,7 +180,6 @@
       bname: String,
       bauthor: String,
       bpublisher: String,
-      bcount: Number,
       available: Number,
     },
   })
@@ -219,7 +196,6 @@
     bname: '',
     bauthor: '',
     bpublisher: '',
-    bcount: '',
     available: '',
   })
 
@@ -228,7 +204,6 @@
     bname: '',
     bauthor: '',
     bpublisher: '',
-    bcount: '',
     available: '',
   })
 
@@ -246,11 +221,6 @@
     bpublisher: {
       required: true,
       message: '出版社不能为空',
-      trigger: 'blur',
-    },
-    bcount: {
-      required: true,
-      message: '数量不能为空',
       trigger: 'blur',
     },
     available: {

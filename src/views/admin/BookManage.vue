@@ -42,10 +42,6 @@
         label="出版社"
         prop="bpublisher"
       />
-      <el-table-column
-        label="数量"
-        prop="bcount"
-      />
       <el-table-column label="是否可用">
         <template #default="scope">
           <el-tag

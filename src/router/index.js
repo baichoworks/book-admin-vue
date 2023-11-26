@@ -4,9 +4,8 @@ import Login from '@/views/common/Login.vue'
 import Signup from '@/views/common/Signup.vue'
 import UserManage from '@/views/admin/UserManage.vue'
 import BookManage from '@/views/admin/BookManage.vue'
-import OrderManage from '@/views/admin/OrderManage.vue'
 import ChangePwd from '@/components/ChangePwd.vue'
-import Subscribe from '@/views/common/Subscribe.vue'
+import Order from '@/views/common/Order.vue'
 import NotFound from '@/views/common/404.vue'
 import { authStore } from '@/store/modules/authStore'
 import { ElMessage } from 'element-plus'
@@ -18,12 +17,12 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-    redirect: '/subscribe',
+    redirect: '/order',
     children: [
       {
-        path: 'subscribe',
-        component: Subscribe,
-        name: 'subscribe',
+        path: 'order',
+        component: Order,
+        name: 'order',
       },
     ],
   },
@@ -47,11 +46,6 @@ const routes = [
         path: 'book',
         component: BookManage,
         name: 'bookManage',
-      },
-      {
-        path: 'order',
-        component: OrderManage,
-        name: 'orderManage',
       },
     ],
   },

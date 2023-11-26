@@ -25,14 +25,7 @@
           <span>图书管理</span>
         </el-menu-item>
         <el-menu-item
-          index="/admin/order"
-          v-if="isAdministrator"
-        >
-          <el-icon><Notebook /></el-icon>
-          <span>预定管理</span>
-        </el-menu-item>
-        <el-menu-item
-          index="/subscribe"
+          index="/order"
           v-else
         >
           <el-icon><Notebook /></el-icon>
