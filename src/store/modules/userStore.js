@@ -93,6 +93,4 @@ export const userStore = defineStore('userStore', {
       }
     },
   },
-  /** 数据持久化 */
-  persist: true,
 })

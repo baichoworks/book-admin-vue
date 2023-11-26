@@ -18,21 +18,3 @@ app.use(router)
 app.use(ElementPlus)
 
 app.mount('#app')
-
-/** 全局守卫配置 */
-router.beforeEach((to, from, next) => {
-  const user = localStorage.getItem('userInfo')
-  if (to.path !== '/login' && to.path !== '/signup') {
-    if (!user) {
-      ElMessage({
-        message: '您还没有登录，请先登录',
-        type: 'error',
-      })
-      next('/login')
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-})

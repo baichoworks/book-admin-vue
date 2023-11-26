@@ -93,6 +93,4 @@ export const bookStore = defineStore('bookStore', {
       }
     },
   },
-  /** 数据持久化 */
-  persist: true,
 })

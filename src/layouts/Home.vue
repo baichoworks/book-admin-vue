@@ -10,17 +10,33 @@
         :default-active="$route.path"
         router
       >
-        <el-menu-item index="/admin/user">
+        <el-menu-item
+          index="/admin/user"
+          v-if="isAdministrator"
+        >
           <el-icon><User /></el-icon>
           <span>用户管理</span>
         </el-menu-item>
-        <el-menu-item index="/admin/book">
+        <el-menu-item
+          index="/admin/book"
+          v-if="isAdministrator"
+        >
           <el-icon><Setting /></el-icon>
           <span>图书管理</span>
         </el-menu-item>
-        <el-menu-item index="/admin/order">
+        <el-menu-item
+          index="/admin/order"
+          v-if="isAdministrator"
+        >
           <el-icon><Notebook /></el-icon>
-          <span>图书预定</span>
+          <span>预定管理</span>
+        </el-menu-item>
+        <el-menu-item
+          index="/subscribe"
+          v-else
+        >
+          <el-icon><Notebook /></el-icon>
+          <span>预定图书</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -29,7 +45,7 @@
         <el-text size="large">图书管理系统</el-text>
         <el-dropdown>
           <span class="dropdown-link">
-            {{ userInfo.username }}
+            {{ username }}
             <el-icon class="dropdown-link-icon">
               <ArrowDown />
             </el-icon>
@@ -58,19 +74,24 @@
 
 <script setup>
   import router from '@/router'
+  import { authStore } from '@/store/modules/authStore'
   import { User, Notebook, Setting } from '@element-plus/icons-vue'
 
+  /** 菜单授权 */
+  const store = authStore()
+  const isAdministrator = store.isAdministrator
+
   /** 获取用户名 */
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  const username = store.user.username
 
   /** 修改密码 */
   const changePwd = () => {
-    router.push('/admin/changepass')
+    router.push('/changepass')
   }
 
   /** 退出登录 */
   const logOut = () => {
-    localStorage.clear()
+    store.user = null
     router.push('/login')
   }
 </script>

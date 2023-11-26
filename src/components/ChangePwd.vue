@@ -46,11 +46,14 @@
 
 <script setup>
   import router from '@/router'
+  import { authStore } from '@/store/modules/authStore'
   import axios from 'axios'
   import { ElMessage } from 'element-plus'
   import { ref, reactive } from 'vue'
 
   const changePwdFormRef = ref('')
+
+  const useAuthStore = authStore()
 
   const changePwdForm = reactive({
     password: '',
@@ -103,7 +106,7 @@
     changePwdFormRef.value.validate(validate => {
       if (validate) {
         /** 获取用户ID */
-        const userID = JSON.parse(localStorage.getItem('userInfo')).id
+        const userID = useAuthStore.user.id
         const submitForm = {
           id: userID,
           password: changePwdForm.password,
@@ -114,7 +117,7 @@
             const res = record.data
             if (res.success) {
               ElMessage.success(res.message)
-              localStorage.clear()
+              useAuthStore.user = null
               router.push('/login')
             } else {
               ElMessage.error(res.message)

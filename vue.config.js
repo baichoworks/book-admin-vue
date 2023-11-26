@@ -5,7 +5,7 @@ module.exports = defineConfig({
     //配置代理
     proxy: {
       '/api': {
-        target: 'http://localhost:8081',
+        target: process.env.VUE_APP_API_URL,
         pathRewrite: {
           '^/api': '',
         },
